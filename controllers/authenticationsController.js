@@ -1,7 +1,7 @@
 var passport = require("passport");
 var User     = require('../models/user');
 var jwt      = require('jsonwebtoken');
-var secret   = process.env.SECRET;
+var secret   = process.env.ANIME_SECRET;
 
 
 function signup(req, res, next) {
