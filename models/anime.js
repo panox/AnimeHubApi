@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 var AnimeSchema = new mongoose.Schema({
   picture: String,
   title: String,
-  score: String,
+  rating: String,
   episodes: String,
   description: String,
 });
