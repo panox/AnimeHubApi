@@ -38,7 +38,7 @@ client.post('auth/access_token', data, function(err, res, body) {
       client.get(url, function(err, res, body) {
         if (err) return console.log(err) //error
         Anime.create({
-          _id: body.id
+          id: body.id
           picture: body.image_url_lge,
           title: body.title_romaji,
           rating: body.average_score,
