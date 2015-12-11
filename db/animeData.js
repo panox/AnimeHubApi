@@ -1,10 +1,4 @@
-var express        = require('express');
-var bodyParser     = require('body-parser');
-var app            = express();
-var request        = require('request');
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+var request = require('request-json');
 
 var data = {
   grant_type    : "client_credentials",
@@ -12,11 +6,10 @@ var data = {
   client_secret :  process.env.ClientSecret,
 }
 
-var url = 'https://anilist.co/api/auth/access_token';
+var client = request.createClient('https://anilist.co/api/');
 
-request.post(url, { form: data }, function (error, response, body) {
-    console.log(body)
-    console.log(typeof body)
-    console.log(body["access_token"])
-  }
-);
+client.post('auth/access_token', data, function(err, res, body) {
+  console.log(typeof body);
+  console.log(body);
+  console.log(body["access_token"]);
+});
