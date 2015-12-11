@@ -43,7 +43,7 @@ client.post('auth/access_token', data, function(err, res, body) {
           title: body.title_romaji,
           rating: body.average_score,
           episodes: body.total_episodes,
-          description: body.description,
+          description: body.description
         })
       })
     };
