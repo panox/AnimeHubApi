@@ -1,0 +1,1 @@
+var Anime   = require('../models/anime');
