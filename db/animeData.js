@@ -9,7 +9,5 @@ var data = {
 var client = request.createClient('https://anilist.co/api/');
 
 client.post('auth/access_token', data, function(err, res, body) {
-  console.log(typeof body);
-  console.log(body);
-  console.log(body["access_token"]);
+  var clientToken = body["access_token"];
 });
