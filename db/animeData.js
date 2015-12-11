@@ -1,4 +1,4 @@
 var request = require('request');
-request('https://api.doughnuts.ga/doughnuts', function (error, res) {
-  console.log(res)
+request.get('https://api.doughnuts.ga/doughnuts', function (error, res, body) {
+  console.log(body)
 })
