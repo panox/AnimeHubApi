@@ -35,11 +35,11 @@ client.post('auth/access_token', data, function(err, res, body) {
       // get data for each anime by get request
       client.get(url, function(err, res, body) {
         Anime.create({
-          picture: String,
-          title: String,
-          rating: String,
-          episodes: String,
-          description: String,
+          picture: body.id,
+          title: body.title_romaji,
+          rating: body.average_score,
+          episodes: body.total_episodes,
+          description: body.description,
         })
       })
     };
