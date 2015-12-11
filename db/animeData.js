@@ -11,7 +11,11 @@ var client = request.createClient('https://anilist.co/api/');
 client.post('auth/access_token', data, function(err, res, body) {
   var clientToken = body["access_token"];
   var sendClientToken = 'access_token=' + clientToken
-  var sorting = '&season=fall&sort=score-desc&type=TV&&status=Currently%20Airing'
+  var sorting = 
+    '&season=fall' +
+    '&sort=score-desc' +
+    '&type=TV' +
+    '&status=Currently%20Airing'
   var getUrl = 'browse/anime?' + sendClientToken + sorting
   client.get(getUrl, function(err, res, body) {
     console.log(body);
