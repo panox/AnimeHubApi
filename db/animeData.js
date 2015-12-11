@@ -7,6 +7,7 @@ var data = {
 }
 
 var client = request.createClient('https://anilist.co/api/');
+var allIds = [];
 
 client.post('auth/access_token', data, function(err, res, body) {
   var clientToken = body["access_token"];
@@ -18,6 +19,9 @@ client.post('auth/access_token', data, function(err, res, body) {
     '&status=Currently%20Airing'
   var getUrl = 'browse/anime?' + sendClientToken + sorting
   client.get(getUrl, function(err, res, body) {
-    console.log(body);
+    for (var i = body.length - 1; i >= 0; i--) {
+      allIds.push(body[i].id)
+    };
   });
 });
+
