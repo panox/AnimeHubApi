@@ -1,4 +1,4 @@
 var request = require('request');
-request.get('https://api.doughnuts.ga/doughnuts', function (error, res, body) {
-  console.log(body)
-})
+request.post('http://localhost:3000/api/login', function (error, res, body) {
+  
+});
