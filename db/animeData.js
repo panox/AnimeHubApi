@@ -18,6 +18,7 @@ var data = {
 var client = request.createClient('https://anilist.co/api/');
 //post to get token back
 client.post('auth/access_token', data, function(err, res, body) {
+  if (err) return console.log(err) //error
   var clientToken = body["access_token"];
   var sendClientToken = '?access_token=' + clientToken
   var params = 
@@ -28,12 +29,14 @@ client.post('auth/access_token', data, function(err, res, body) {
   var getUrl = 'browse/anime' + sendClientToken + params
   //get all anime with url params
   client.get(getUrl, function(err, res, body) {
+    if (err) return console.log(err) //error
     // loop request for every anime from browse response
     for (var i = body.length - 1; i >= 0; i--) {
       var animeId = body[i].id
       var url = 'anime/' + animeId + sendClientToken
       // get data for each anime by get request
       client.get(url, function(err, res, body) {
+        if (err) return console.log(err) //error
         Anime.create({
           picture: body.id,
           title: body.title_romaji,
@@ -45,4 +48,6 @@ client.post('auth/access_token', data, function(err, res, body) {
     };
   });
 });
+
+console.log("done")
 
