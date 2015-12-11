@@ -1,5 +1,6 @@
 var User   = require('../models/user');
 
+//get all the users
 function usersIndex(req, res) {
   User.find().populate('images').exec(function(err, users){
     if (err) return res.status(404).json({message: 'No users found'});
@@ -7,6 +8,7 @@ function usersIndex(req, res) {
   });
 }
 
+//get one user
 function userShow(req, res){
   User.findById(req.params.id).populate('images').exec( function(err, user){
     if (err) return res.status(404).json({message: 'No user found'});
@@ -14,6 +16,7 @@ function userShow(req, res){
   });
 }
 
+//update one user
 function userUpdate(req, res){
   User.findById(req.params.id,  function(err, user) {
     if (err) return res.status(500).json({message: "Something went wrong!"});
@@ -34,6 +37,7 @@ function userUpdate(req, res){
   });
 }
 
+//delete one user
 function userDelete(req, res){
   User.findByIdAndRemove({_id: req.params.id}, function(err){
    if (err) return res.status(404).json({message: 'Could not delete user'});

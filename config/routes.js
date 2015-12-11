@@ -9,7 +9,7 @@ var authenticationsController = require('../controllers/authenticationsControlle
 
 var upload = require(__dirname +"/upload.js")
 
-
+//routes
 router.post('/signup', authenticationsController.signup);
 router.post('/login', authenticationsController.login);
 

@@ -3,7 +3,7 @@ var User     = require('../models/user');
 var jwt      = require('jsonwebtoken');
 var secret   = process.env.ANIME_SECRET;
 
-
+// signup
 function signup(req, res, next) {
   var localStrategy = passport.authenticate('local-signup', function(err, user, message) {
     if (err) return res.status(500).json({ message: err });
@@ -27,6 +27,7 @@ function signup(req, res, next) {
 
 };
 
+//login
 function login(req, res, next) {
   User.findOne({
     "local.email": req.body.email
