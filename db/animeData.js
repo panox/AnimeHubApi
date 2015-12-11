@@ -34,7 +34,13 @@ client.post('auth/access_token', data, function(err, res, body) {
       var url = 'anime/' + animeId + sendClientToken
       // get data for each anime by get request
       client.get(url, function(err, res, body) {
-        console.log(body)
+        Anime.create({
+          picture: String,
+          title: String,
+          rating: String,
+          episodes: String,
+          description: String,
+        })
       })
     };
   });
