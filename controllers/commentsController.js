@@ -2,6 +2,13 @@ var Comment   = require('../models/comment');
 
 //create comments
 function commentsCreate(req, res){
+  var comment = new Comment(req.body);
+
+  comment.save(function(err) {
+    if (err) return res.status(500).json({message: "could not create new  comment"});
+
+    res.status(200).json({comment: comment});
+  });
 }
 // edit comments
 function commentUpdate(req, res){
