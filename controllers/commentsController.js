@@ -3,31 +3,23 @@ var Anime   = require('../models/anime');
 
 //create comments
 function commentsCreate(req, res){
-  var comment = new Comment(req.body);
+  Anime.findById(req.params.id, function(err, anime) {
 
-  comment.save(function(err) {
-    if (err) return res.status(500).json({message: "could not create new  comment"});
-
-    res.status(200).json({comment: comment});
-  });
-
-  User.findById(req.body.user, function(err, user) {
-
-    var image = new Image({
+    var comment = new Comment({
       title: req.body.title,
-      location: req.body.location,
-      image: req.file.key,
-      user: req.body.user
+      content: req.body.content,
+      user: req.body.user,
+      anime: req.params.id
     });
 
-    image.save(function(err){
-      if (err) return res.status(500).json({message: "problem saving image"})
+    comment.save(function(err){
+      if (err) return res.status(500).json({message: "problem saving comment"})
 
-      user.images.push(image);
+      anime.comments.push(comment);
 
-      user.save(function(err){
-        if (err) return res.status(500).json({message: "problem adding image to this user"})
-        res.status(201).json({image: image});
+      anime.save(function(err){
+        if (err) return res.status(500).json({message: "problem adding comment to this anime"})
+        res.status(201).json({comment: comment});
       });
     
     });
