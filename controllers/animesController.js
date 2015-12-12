@@ -1,18 +1,18 @@
 var Anime   = require('../models/anime');
 
-//get all the users
-function usersIndex(req, res) {
-  User.find().populate('images').exec(function(err, users){
-    if (err) return res.status(404).json({message: 'No users found'});
-    res.status(200).json({ users: users });
+//get all the animes
+function animesIndex(req, res) {
+  Anime.find( function(err, animes){
+    if (err) return res.status(404).json({message: 'No animes found'});
+    res.status(200).json({ animes: animes });
   });
 }
 
-//get one user
-function userShow(req, res){
-  User.findById(req.params.id).populate('images').exec( function(err, user){
-    if (err) return res.status(404).json({message: 'No user found'});
-    res.status(200).json({ user: user });
+//get one anime
+function animeShow(req, res){
+  Anime.findById(req.params.id, function(err, anime){
+    if (err) return res.status(404).json({message: 'No anime found'});
+    res.status(200).json({ anime: anime });
   });
 }
 
