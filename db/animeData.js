@@ -31,7 +31,7 @@ client.post('auth/access_token', data, function(err, res, body) {
   client.get(getUrl, function(err, res, body) {
     if (err) return console.log(err) //error
     // loop request for every anime from browse response
-    for (var i = body.length - 1; i >= 0; i--) {
+    for (var i = 0; i < body.length; i++) {
       var animeId = body[i].id
       var url = 'anime/' + animeId + sendClientToken
       // get data for each anime by get request
