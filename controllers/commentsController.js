@@ -1,4 +1,5 @@
 var Comment   = require('../models/comment');
+var Anime   = require('../models/anime');
 
 //create comments
 function commentsCreate(req, res){
@@ -9,6 +10,29 @@ function commentsCreate(req, res){
 
     res.status(200).json({comment: comment});
   });
+
+  User.findById(req.body.user, function(err, user) {
+
+    var image = new Image({
+      title: req.body.title,
+      location: req.body.location,
+      image: req.file.key,
+      user: req.body.user
+    });
+
+    image.save(function(err){
+      if (err) return res.status(500).json({message: "problem saving image"})
+
+      user.images.push(image);
+
+      user.save(function(err){
+        if (err) return res.status(500).json({message: "problem adding image to this user"})
+        res.status(201).json({image: image});
+      });
+    
+    });
+
+  })
 }
 // edit comments
 function commentUpdate(req, res){
