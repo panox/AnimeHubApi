@@ -37,6 +37,7 @@ client.post('auth/access_token', data, function(err, res, body) {
       // get data for each anime by get request
       client.get(url, function(err, res, body) {
         if (err) return console.log(err) //error
+        //create a mongoose document for every returned request
         Anime.create({
           _id: body.id,
           picture: body.image_url_lge,
