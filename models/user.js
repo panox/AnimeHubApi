@@ -9,7 +9,7 @@ var UserSchema = new mongoose.Schema({
   first_name: String,
   last_name: String,
   picture: String,
-  username: String
+  username: { String, required: true, unique: true }
 });
 
 UserSchema.statics.encrypt = function(password) {
