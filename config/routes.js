@@ -3,7 +3,7 @@ var router   = express.Router();
 var passport = require("passport");
 
 var usersController = require('../controllers/usersController');
-var usersController = require('../controllers/animesController');
+var animesController = require('../controllers/animesController');
 var authenticationsController = require('../controllers/authenticationsController');
 
 var upload = require(__dirname +"/upload.js")
