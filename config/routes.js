@@ -31,7 +31,6 @@ router.route('/anime/:id')
 
 //Comments
 router.route('/anime/:id/comments')
-  .get(commentsController.commentsIndex);
   .post(commentsController.commentsCreate);
 
 router.route('/comment/:id')
