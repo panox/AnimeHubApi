@@ -45,9 +45,18 @@ function commentUpdate(req, res){
 }
 // delete comments
 function commentDelete(req, res){
-  Comment.findByIdAndRemove({_id: req.params.id}, function(err){
-   if (err) return res.status(404).json({message: 'Could not delete comment'});
-   res.status(200).json({message: 'Comment has been successfully deleted'});
+
+  Comment.findById(req.params.id, function(err, comment) {
+    if (err) return res.status(500).json({message: 'could not find the comment you requested'})
+
+    Anime.update({_id: comment.anime}, {$pull : {comments : comment._id}}, function(err, anime){
+      if (err) return res.status(500).json({message: 'could not update anime comments collection'})
+      comment.remove(function(err) {
+        if (err) return res.status(500).json({ message: "There is was an error deleting your comment"})
+      });
+    });
+    
+    return res.status(200).json({ message: "Comment was removed"});
   });
 }
 
