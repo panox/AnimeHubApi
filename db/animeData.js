@@ -37,6 +37,9 @@ client.post('auth/access_token', data, function(err, res, body) {
       // get data for each anime by get request
       client.get(url, function(err, res, body) {
         if (err) return console.log(err) //error
+        // clear description
+        var re = /<br>|\(Source.+/g;
+        var description = body.description.replace(re, "");
         //create a mongoose document for every returned request
         Anime.create({
           _id: body.id,
@@ -44,7 +47,7 @@ client.post('auth/access_token', data, function(err, res, body) {
           title: body.title_romaji,
           rating: body.average_score,
           episodes: body.total_episodes,
-          description: body.description,
+          description: description,
           comments: []
         })
       })
