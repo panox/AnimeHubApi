@@ -28,5 +28,8 @@
     "passport": "^0.2.0",
     "passport-local": "~0.1.6",
     "request-json": "^0.5.3"
+  },
+  "devDependencies": {
+    "mongodb-backup": "^1.4.2"
   }
 }
