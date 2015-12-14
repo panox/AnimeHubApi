@@ -3,7 +3,7 @@ var Comment   = require('../models/comment');
 
 //get all the animes
 function animesIndex(req, res) {
-  Anime.find( function(err, animes){
+  Anime.find().sort('-rating').exec(function(err, animes){
     if (err) return res.status(404).json({message: 'No animes found'});
     res.status(200).json({ animes: animes });
   });
