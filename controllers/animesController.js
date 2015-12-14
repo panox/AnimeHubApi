@@ -14,7 +14,7 @@ function animesIndex(req, res) {
 function animeShow(req, res){
   Anime.findById(req.params.id).populate('comments').exec(function(err, anime){
     if (err) return res.status(404).json({message: 'No anime found'});
-
+    // populate user object inside comment
     User.populate(anime, 'comments.user', function(err, anime) {
       res.status(200).json({ anime: anime });
     });
