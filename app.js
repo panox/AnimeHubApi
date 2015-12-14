@@ -38,14 +38,16 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(passport.initialize());
 
-//Protect Routes with token
-// app.use('/api', expressJWT({ secret: secret })
-//   .unless({
-//     path: [
-//       { url: '/api/login', methods: ['POST'] },
-//       { url: '/api/signup', methods: ['POST'] }
-//     ]
-//   }));
+// Protect Routes with token
+app.use('/api', expressJWT({ secret: secret })
+  .unless({
+    path: [
+      { url: '/api/login', methods: ['POST'] },
+      { url: '/api/signup', methods: ['POST'] },
+      { url: '/api/animes', methods: ['GET'] },
+      { url: '/api/anime/:id', methods: ['GET'] },
+    ]
+  }));
 
 
 // Routes
