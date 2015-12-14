@@ -9,4 +9,6 @@ https://anilist.co/api/browse/anime/?access_token=8urF1BprLZcDaPkcLGMJFsuPdvd96E
 https://anilist.co/api/browse/anime?access_token=8urF1BprLZcDaPkcLGMJFsuPdvd96EqdYt3SmjqT&season=fall&sort=score-desc&type=TV&&status=Currently%20Airing&full_page=true
 
 description clear 
-var re = /<br>/g; 
+var re = /<br>|\(Source.+/g;
+var str = "the text block"
+var clear = str.replace(re, "");
