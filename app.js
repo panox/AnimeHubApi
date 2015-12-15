@@ -10,8 +10,6 @@ var jwt            = require('jsonwebtoken');
 var expressJWT     = require('express-jwt');
 var app            = express();
 
-var stripe = require('stripe')(process.env.StripeTestSecretKey);
-
 var secret = process.env.ANIME_SECRET;
 
 if(!secret) throw new Error('No secret in zshrc file');
