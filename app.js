@@ -39,15 +39,14 @@ app.use(cors());
 app.use(passport.initialize());
 
 // Protect Routes with token
-// app.use('/api', expressJWT({ secret: secret })
-//   .unless({
-//     path: [
-//       { url: '/api/login', methods: ['POST'] },
-//       { url: '/api/signup', methods: ['POST'] },
-//       { url: '/api/animes', methods: ['GET'] },
-//       { url: /\/api\/anime\/.*/, methods: ['GET'] }
-//     ]
-//   }));
+app.use('/api', expressJWT({ secret: secret })
+  .unless({
+    path: [
+      { url: '/api/login', methods: ['POST'] },
+      { url: '/api/signup', methods: ['POST'] },
+      { url: '/api/animes', methods: ['GET'] },
+    ]
+  }));
 
 
 // Routes
