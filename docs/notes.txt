@@ -12,3 +12,6 @@ description clear
 var re = /<br>|\(Source.+/g;
 var str = "the text block"
 var clear = str.replace(re, "");
+
+External Variable
+PRERENDER_TOKEN
