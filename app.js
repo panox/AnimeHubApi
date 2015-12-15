@@ -10,8 +10,6 @@ var jwt            = require('jsonwebtoken');
 var expressJWT     = require('express-jwt');
 var app            = express();
 
-var prerender = require('prerender-node');
-
 var secret = process.env.ANIME_SECRET;
 
 if(!secret) throw new Error('No secret in zshrc file');
@@ -33,8 +31,7 @@ app.use(methodOverride(function(req, res){
 }));
 
 //Middleware
-
-app.use(prerender.set('prerenderToken', process.env.PRERENDER_TOKEN));
+app.use(require('prerender-node').set('prerenderServiceUrl', 'http://localhost:3000/').set('prerenderToken', process.env.PRERENDER_TOKEN));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
