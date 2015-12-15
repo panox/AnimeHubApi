@@ -57,10 +57,10 @@ function userPay(req, res){
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
       // The card has been declined
-      console.log('Error', err)
+      res.status(500).json({message: 'The card has been declined', err: err});
     }
     else {
-      console.log('Charge:', charge)
+      res.status(200).json({message: 'Charged', charge: charge});
     }
     
   });
