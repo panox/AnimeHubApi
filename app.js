@@ -31,6 +31,9 @@ app.use(methodOverride(function(req, res){
 }));
 
 //Middleware
+
+app.use(require('prerender-node').set('prerenderToken', process.env.PRERENDER_TOKEN));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
