@@ -1,4 +1,5 @@
 var User   = require('../models/user');
+var stripe = require('stripe')(process.env.StripeTestSecretKey);
 
 //get all the users
 function usersIndex(req, res) {
@@ -45,9 +46,29 @@ function userDelete(req, res){
   });
 }
 
+//user payment
+function userPay(req, res){
+  var charge = stripe.charges.create({
+    amount: 1000, // amount in cents, again
+    currency: "gbp",
+    source: stripeToken,
+    description: "Donation Charge"
+  }, function(err, charge) {
+    if (err && err.type === 'StripeCardError') {
+      // The card has been declined
+      console.log('Error', err)
+    }
+    else {
+      console.log('Charge:', charge)
+    }
+    
+  });
+}
+
 module.exports = {
   usersIndex:  usersIndex,
   userShow: userShow,
   userUpdate: userUpdate,
-  userDelete: userDelete
+  userDelete: userDelete,
+  userPay: userPay
 }
