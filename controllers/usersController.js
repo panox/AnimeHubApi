@@ -60,7 +60,8 @@ function userPay(req, res){
       res.status(500).json({message: 'The card has been declined', err: err});
     }
     else {
-      res.status(200).json({charge: charge});
+      var a = req.body
+      res.status(200).json({charge: charge, body: a});
     }
     
   });
