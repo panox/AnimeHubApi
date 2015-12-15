@@ -27,8 +27,8 @@
     "multer-s3": "^1.4.1",
     "passport": "^0.2.0",
     "passport-local": "~0.1.6",
+    "prerender-node": "^2.1.0",
     "request-json": "^0.5.3"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
