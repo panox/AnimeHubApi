@@ -1,11 +1,19 @@
 var stripe = require('stripe')(process.env.StripeTestSecretKey);
 
-stripe.charges.create({
-  amount: 400,
+var stripeToken = request.body.stripeToken;
+
+var charge = stripe.charges.create({
+  amount: 1000, // amount in cents, again
   currency: "gbp",
-  source: "tok_17IKIZA9VROQGHUtuB7vZQY3",
-  customer: "cus_7XPJJLaVUDUJAB"
+  source: stripeToken,
+  description: "Donation Charge"
 }, function(err, charge) {
-  console.log('Error', err)
-  console.log('Charge:', charge)
+  if (err && err.type === 'StripeCardError') {
+    // The card has been declined
+    console.log('Error', err)
+  }
+  else {
+    console.log('Charge:', charge)
+  }
+  
 });
