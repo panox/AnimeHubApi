@@ -22,6 +22,9 @@ router.route('/users/:id')
   .put(usersController.userUpdate)
   .delete(usersController.userDelete);
 
+router.route('/users/pay')
+  .post(usersController.userPay);
+
 //Animes
 router.route('/animes')
   .get(animesController.animesIndex);
