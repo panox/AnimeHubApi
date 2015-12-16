@@ -45,6 +45,7 @@ app.use('/api', expressJWT({ secret: secret })
       { url: '/api/login', methods: ['POST'] },
       { url: '/api/signup', methods: ['POST'] },
       { url: '/api/animes', methods: ['GET'] },
+      { url: /\/api\/anime\/.*/, methods: ['GET'] }
     ]
   }));
 
