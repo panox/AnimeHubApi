@@ -50,7 +50,7 @@ function userDelete(req, res){
 function userPay(req, res){
   var stripeToken = req.body.stripeToken;
   var charge = stripe.charges.create({
-    amount: 1000, // amount in cents, again
+    amount: req.body.amount*100, // amount in cents, again
     currency: "gbp",
     source: stripeToken,
     description: "Donation Charge"
