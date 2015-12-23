@@ -13,15 +13,15 @@ var data = {
   grant_type    : "client_credentials",
   client_id     :  process.env.ClientID,
   client_secret :  process.env.ClientSecret,
-}
+};
 // client url
 var client = request.createClient('https://anilist.co/api/');
 //post to get token back
 client.post('auth/access_token', data, function(err, res, body) {
-  if (err) return console.log(err) //error
+  if (err) return console.log(err); //error
   var clientToken = body["access_token"];
   var sendClientToken = '?access_token=' + clientToken
-  var params = 
+  var params =
     '&season=fall' +
     '&sort=score-desc' +
     '&type=TV' +
@@ -56,4 +56,3 @@ client.post('auth/access_token', data, function(err, res, body) {
 });
 
 console.log("done")
-
