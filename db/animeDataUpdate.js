@@ -22,8 +22,11 @@ client.post('auth/access_token', data, function(err, res, body) {
 
   Anime.find().exec(function(err, animes){
     if (err) return console.log(err); //error
+    for (var i = 0; i < animes.length; i++) {
+      var id = animes[i]._id;
+    }
   });
-}
+});
 
 // updates the current data in database
 
