@@ -7,7 +7,6 @@ var Anime   = require('../models/anime');
 var config = require('../config/config');
 mongoose.connect(config.database);
 
-
 //data to get token
 var data = {
   grant_type    : "client_credentials",
@@ -32,6 +31,7 @@ client.post('auth/access_token', data, function(err, res, body) {
   client.get(getUrl, function(err, res, body) {
     if (err) return console.log(err); //error
     // loop request for every anime from browse response
+    console.log(body.length);
     for (var i = 0; i < body.length; i++) {
       var animeId = body[i].id;
       var url = 'anime/' + animeId + sendClientToken;
