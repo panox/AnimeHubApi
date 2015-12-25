@@ -1,5 +1,4 @@
 var request = require('request-json');
-
 var mongoose = require("mongoose");
 var Anime   = require('../models/anime');
 
@@ -46,28 +45,3 @@ client.post('auth/access_token', data, function(err, res, body) {
 });
 
 console.log("done");
-
-
-// var animeIds = [];
-// animeIds.push(body[i].id);
-// console.log(animeIds);
-// var url = 'anime/' + animeId + sendClientToken;
-// // get data for each anime by get request
-// client.get(url, saveToDb);
-function saveToDb(err, res, body) {
-  if (err) return console.log(err); //error
-  // clear description
-  console.log(body);
-  var re = /<br>|\(Source.+/g;
-  var description = body.description.replace(re, "");
-  //create a mongoose document for every returned request
-  Anime.create({
-    _id: body.id,
-    picture: body.image_url_lge,
-    title: body.title_romaji,
-    rating: body.popularity,
-    episodes: body.total_episodes,
-    description: description,
-    comments: []
-  });
-}
