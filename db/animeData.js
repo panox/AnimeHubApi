@@ -7,6 +7,25 @@ var Anime   = require('../models/anime');
 var config = require('../config/config');
 mongoose.connect(config.database);
 
+function saveToDb(err, res, body) {
+  if (err) return console.log(err); //error
+  // clear description
+  console.log(body);
+  var re = /<br>|\(Source.+/g;
+  var description = body.description.replace(re, "");
+  //create a mongoose document for every returned request
+  Anime.create({
+    _id: body.id,
+    picture: body.image_url_lge,
+    title: body.title_romaji,
+    rating: body.popularity,
+    episodes: body.total_episodes,
+    description: description,
+    comments: []
+  });
+}
+
+
 //data to get token
 var data = {
   grant_type    : "client_credentials",
@@ -31,27 +50,11 @@ client.post('auth/access_token', data, function(err, res, body) {
   client.get(getUrl, function(err, res, body) {
     if (err) return console.log(err); //error
     // loop request for every anime from browse response
-    console.log(body.length);
     for (var i = 0; i < body.length; i++) {
       var animeId = body[i].id;
       var url = 'anime/' + animeId + sendClientToken;
       // get data for each anime by get request
-      client.get(url, function(err, res, body) {
-        if (err) return console.log(err); //error
-        // clear description
-        var re = /<br>|\(Source.+/g;
-        var description = body.description.replace(re, "");
-        //create a mongoose document for every returned request
-        Anime.create({
-          _id: body.id,
-          picture: body.image_url_lge,
-          title: body.title_romaji,
-          rating: body.popularity,
-          episodes: body.total_episodes,
-          description: description,
-          comments: []
-        });
-      })
+      client.get(url, saveToDb);
     }
   });
 });
