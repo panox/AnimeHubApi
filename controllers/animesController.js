@@ -4,7 +4,7 @@ var User   = require('../models/user');
 
 //get all the animes
 function animesIndex(req, res) {
-  Anime.find().sort([['rating', 'descending']]).exec(function(err, animes){
+  Anime.find().exec(function(err, animes){
     if (err) return res.status(404).json({message: 'No animes found'});
     res.status(200).json({ animes: animes });
   });
