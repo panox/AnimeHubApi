@@ -20,23 +20,23 @@ var client = request.createClient('https://anilist.co/api/');
 client.post('auth/access_token', data, function(err, res, body) {
   if (err) return console.log(err); //error
   var clientToken = body["access_token"];
-  var sendClientToken = '?access_token=' + clientToken
+  var sendClientToken = '?access_token=' + clientToken;
   var params =
     '&season=fall' +
     '&sort=score-desc' +
     '&type=TV' +
     '&status=Currently%20Airing'
-  var getUrl = 'browse/anime' + sendClientToken + params
+  var getUrl = 'browse/anime' + sendClientToken + params;
   //get all anime with url params
   client.get(getUrl, function(err, res, body) {
-    if (err) return console.log(err) //error
+    if (err) return console.log(err); //error
     // loop request for every anime from browse response
     for (var i = 0; i < body.length; i++) {
-      var animeId = body[i].id
-      var url = 'anime/' + animeId + sendClientToken
+      var animeId = body[i].id;
+      var url = 'anime/' + animeId + sendClientToken;
       // get data for each anime by get request
       client.get(url, function(err, res, body) {
-        if (err) return console.log(err) //error
+        if (err) return console.log(err); //error
         // clear description
         var re = /<br>|\(Source.+/g;
         var description = body.description.replace(re, "");
@@ -49,10 +49,10 @@ client.post('auth/access_token', data, function(err, res, body) {
           episodes: body.total_episodes,
           description: description,
           comments: []
-        })
+        });
       })
-    };
+    }
   });
 });
 
-console.log("done")
+console.log("done");
