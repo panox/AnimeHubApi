@@ -29,7 +29,9 @@ client.post('auth/access_token', data, function(err, res, body) {
       // request from api every anime in the db
       client.get(url, function (err, res, body) {
         // updates the current data in database
-        Anime.update({ _id: body.id }, { $set: { description: body.description }}, function (err, anime) {
+        var re = /<br>|\(Source.+/g;
+        var description = body.description.replace(re, "");
+        Anime.update({ _id: body.id }, { $set: { description: description }}, function (err, anime) {
           if (err) return console.log(err); //error
         })
       });
