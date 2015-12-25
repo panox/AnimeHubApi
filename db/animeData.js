@@ -50,10 +50,20 @@ client.post('auth/access_token', data, function(err, res, body) {
   client.get(getUrl, function(err, res, body) {
     if (err) return console.log(err); //error
     // loop request for every anime from browse response
+    console.log(body);
     for (var i = 0; i < body.length; i++) {
-      var animeIds = [];
-      animeIds.push(body[i].id);
-      console.log(animeIds);
+      Anime.create({
+        _id: body[i].id,
+        picture: body[i].image_url_lge,
+        title: body[i].title_romaji,
+        rating: body[i].popularity,
+        episodes: body[i].total_episodes,
+        description: "",
+        comments: []
+      });
+      // var animeIds = [];
+      // animeIds.push(body[i].id);
+      // console.log(animeIds);
       // var url = 'anime/' + animeId + sendClientToken;
       // // get data for each anime by get request
       // client.get(url, saveToDb);
