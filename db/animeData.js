@@ -22,10 +22,11 @@ client.post('auth/access_token', data, function(err, res, body) {
   var clientToken = body["access_token"];
   var sendClientToken = '?access_token=' + clientToken;
   var params =
-    '&season=fall' +
-    '&sort=score-desc' +
+    '&year=2016' +
+    '&season=winter' +
     '&type=TV' +
-    '&status=Currently%20Airing'
+    '&sort=popularity-desc';
+
   var getUrl = 'browse/anime' + sendClientToken + params;
   //get all anime with url params
   client.get(getUrl, function(err, res, body) {
@@ -45,7 +46,7 @@ client.post('auth/access_token', data, function(err, res, body) {
           _id: body.id,
           picture: body.image_url_lge,
           title: body.title_romaji,
-          rating: body.average_score,
+          rating: body.popularity,
           episodes: body.total_episodes,
           description: description,
           comments: []
