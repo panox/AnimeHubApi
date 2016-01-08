@@ -6,6 +6,9 @@ var Anime   = require('../models/anime');
 var config = require('../config/config');
 mongoose.connect(config.database);
 
+// Clear All Anime
+Anime.find().remove();
+
 //data to get token
 var data = {
   grant_type    : "client_credentials",
