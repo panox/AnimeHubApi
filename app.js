@@ -55,9 +55,11 @@ var routes = require('./config/routes');
 app.use("/api", routes);
 
 // Cron
+var Token = require('./aniToken');
+var Rating = require('./updateRating');
 var CronJob = require('cron').CronJob;
-new CronJob('* * * * * *', function() {
-  console.log('You will see this message every second');
+new CronJob('*/10 * * * * *', function() {
+  Token.getAniToken(Rating.updateRating);
 }, null, true, 'Europe/London');
 
 // Port
