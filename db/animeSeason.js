@@ -45,7 +45,7 @@ function getSeason() {
 function createSeason(sendClientToken, client) {
   var params =
     '&year=' + new Date().getFullYear() +
-    '&season=winter' +
+    '&season=' + getSeason() +
     '&type=TV' +
     '&sort=popularity-desc';
 
