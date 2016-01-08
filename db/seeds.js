@@ -5,3 +5,5 @@ var Token = require('./aniToken');
 // Database
 var config = require('../config/config');
 mongoose.connect(config.database);
+
+console.log(new Date());
