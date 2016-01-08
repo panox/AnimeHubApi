@@ -7,6 +7,10 @@ var mongoose = require("mongoose");
 var config = require('../config/config');
 mongoose.connect(config.database);
 
+var animeSeason = {
+
+};
+
 function getSeason() {
     var month = new Date().getMonth();
     var winter = '0,1,2';
@@ -82,3 +86,5 @@ function updateDescriptions(sendClientToken, client) {
 
 // Creates the whole season
 Token.getAniToken(createSeason);
+
+module.exports = animeSeason;
