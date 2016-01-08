@@ -2,32 +2,25 @@ var request = require('request-json');
 var Anime   = require('../models/anime');
 var Token = require('./aniToken');
 
-// Database
-var mongoose = require("mongoose");
-var config = require('../config/config');
-mongoose.connect(config.database);
-
-var animeSeason = {
-
+var AnimeSeason = {
+  season: function getSeason() {
+      var month = new Date().getMonth();
+      var winter = '0,1,2';
+      var spring = '3,4,5,';
+      var summer = '6,7,8,';
+      var fall = '9,10,11,';
+      if (winter.indexOf(month) != -1) {
+          season = 'winter';
+      } else if (spring.indexOf(month) != -1) {
+          season = 'spring';
+      } else if (summer.indexOf(month) != -1) {
+          season = 'summer';
+      } else if (fall.indexOf(month) != -1) {
+          season = 'fall';
+      }
+      return season;
+  }(),
 };
-
-function getSeason() {
-    var month = new Date().getMonth();
-    var winter = '0,1,2';
-    var spring = '3,4,5,';
-    var summer = '6,7,8,';
-    var fall = '9,10,11,';
-    if (winter.indexOf(month) != -1) {
-        season = 'winter';
-    } else if (spring.indexOf(month) != -1) {
-        season = 'spring';
-    } else if (summer.indexOf(month) != -1) {
-        season = 'summer';
-    } else if (fall.indexOf(month) != -1) {
-        season = 'fall';
-    }
-    return season;
-}
 
 function createSeason(sendClientToken, client) {
   // Clear All Anime
@@ -39,7 +32,7 @@ function createSeason(sendClientToken, client) {
   // Get New Anime
   var params =
     '&year=' + new Date().getFullYear() +
-    '&season=' + getSeason() +
+    '&season=' + AnimeSeason.season +
     '&type=TV' +
     '&sort=popularity-desc';
 
@@ -87,4 +80,4 @@ function updateDescriptions(sendClientToken, client) {
 // Creates the whole season
 Token.getAniToken(createSeason);
 
-module.exports = animeSeason;
+module.exports = AnimeSeason;
