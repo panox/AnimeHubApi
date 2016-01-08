@@ -16,7 +16,7 @@ Anime.find().exec(function(err, animes){
 
 function createSeason(sendClientToken, client) {
   var params =
-    '&year=2016' +
+    '&year=' + new Date().getFullYear() +
     '&season=winter' +
     '&type=TV' +
     '&sort=popularity-desc';
