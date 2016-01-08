@@ -6,4 +6,12 @@ var Token = require('./aniToken');
 var config = require('../config/config');
 mongoose.connect(config.database);
 
-console.log(new Date());
+Anime.create({
+  _id: 20,
+  title: "super",
+  rating: 3000,
+  description: "",
+  comments: []
+});
+
+console.log("done");
