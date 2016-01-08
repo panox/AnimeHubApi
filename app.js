@@ -54,6 +54,12 @@ app.use('/api', expressJWT({ secret: secret })
 var routes = require('./config/routes');
 app.use("/api", routes);
 
+// Cron
+var CronJob = require('cron').CronJob;
+new CronJob('* * * * * *', function() {
+  console.log('You will see this message every second');
+}, null, true, 'America/Los_Angeles');
+
 // Port
 app.listen(process.env.PORT || 3000 );
 console.log('listening to 3000')
