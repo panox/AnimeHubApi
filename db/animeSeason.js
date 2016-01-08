@@ -15,31 +15,21 @@ Anime.find().exec(function(err, animes){
 });
 
 function getSeason() {
-  var month = new Date().getMonth();
-  var season;
-  switch(month) {
-    case 0:
-    case 1:
-    case 2:
-    season = 'winter';
-    break;
-    case 3:
-    case 4:
-    case 5:
-    season = 'spring';
-    break;
-    case 6:
-    case 7:
-    case 8:
-    season = 'summer';
-    break;
-    case 9:
-    case 10:
-    case 11:
-    season = 'fall';
-    break;
-  }
-  return season;
+    var month = new Date().getMonth();
+    var winter = '0,1,2';
+    var spring = '3,4,5,';
+    var summer = '6,7,8,';
+    var fall = '9,10,11,';
+    if (winter.indexOf(month) != -1) {
+        season = 'winter';
+    } else if (spring.indexOf(month) != -1) {
+        season = 'spring';
+    } else if (summer.indexOf(month) != -1) {
+        season = 'summer';
+    } else if (fall.indexOf(month) != -1) {
+        season = 'fall';
+    }
+    return season;
 }
 
 function createSeason(sendClientToken, client) {
