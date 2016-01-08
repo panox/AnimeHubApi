@@ -14,7 +14,7 @@ Anime.find().exec(function(err, animes){
   });
 });
 
-function createSeason(sendClientToken) {
+function createSeason(sendClientToken, client) {
   var params =
     '&year=2016' +
     '&season=winter' +
@@ -50,7 +50,7 @@ function getAniToken() {
     var clientToken = body.access_token;
     var sendClientToken = '?access_token=' + clientToken;
 
-    createSeason(sendClientToken);
+    createSeason(sendClientToken, client);
 
     console.log("Process Complete");
   });
