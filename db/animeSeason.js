@@ -14,14 +14,7 @@ Anime.find().exec(function(err, animes){
   });
 });
 
-// client url
-var client = request.createClient('https://anilist.co/api/');
-//post to get token back
-client.post('auth/access_token', Token.data, function(err, res, body) {
-  if (err) return console.log(err); //error
-
-  var clientToken = body.access_token;
-  var sendClientToken = '?access_token=' + clientToken;
+function createSeason(sendClientToken) {
   var params =
     '&year=2016' +
     '&season=winter' +
@@ -44,7 +37,19 @@ client.post('auth/access_token', Token.data, function(err, res, body) {
         comments: []
       });
     }
-  console.log("Anime Created");
   });
+}
 
+// client url
+var client = request.createClient('https://anilist.co/api/');
+//post to get token back
+client.post('auth/access_token', Token.data, function(err, res, body) {
+  if (err) return console.log(err); //error
+
+  var clientToken = body.access_token;
+  var sendClientToken = '?access_token=' + clientToken;
+
+  createSeason(sendClientToken);
+
+  console.log("Process Complete");
 });
