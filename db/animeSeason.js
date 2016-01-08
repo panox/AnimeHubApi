@@ -37,6 +37,7 @@ function createSeason(sendClientToken, client) {
         comments: []
       });
     }
+    // update the description after entries have been created
     Token.getAniToken(updateDescriptions);
   });
 }
@@ -61,4 +62,5 @@ function updateDescriptions(sendClientToken, client) {
   });
 }
 
+// Creates the whole season
 Token.getAniToken(createSeason);
