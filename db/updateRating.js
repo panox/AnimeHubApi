@@ -17,7 +17,7 @@ function updateRating(sendClientToken, client) {
       // request from api every anime in the db
       client.get(url, function (err, res, body) {
         // updates the current data in database
-        Anime.update({ _id: body.id }, { $set: { rating: 20 }}, function (err, anime) {
+        Anime.update({ _id: body.id }, { $set: { rating: body.popularity }}, function (err, anime) {
           if (err) return console.log(err); //error
         });
       });
