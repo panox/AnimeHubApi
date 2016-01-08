@@ -40,16 +40,20 @@ function createSeason(sendClientToken) {
   });
 }
 
-// client url
-var client = request.createClient('https://anilist.co/api/');
-//post to get token back
-client.post('auth/access_token', Token.data, function(err, res, body) {
-  if (err) return console.log(err); //error
+function getAniToken() {
+  // client url
+  var client = request.createClient('https://anilist.co/api/');
+  //post to get token back
+  client.post('auth/access_token', Token.data, function(err, res, body) {
+    if (err) return console.log(err); //error
 
-  var clientToken = body.access_token;
-  var sendClientToken = '?access_token=' + clientToken;
+    var clientToken = body.access_token;
+    var sendClientToken = '?access_token=' + clientToken;
 
-  createSeason(sendClientToken);
+    createSeason(sendClientToken);
 
-  console.log("Process Complete");
-});
+    console.log("Process Complete");
+  });
+}
+
+getAniToken();
