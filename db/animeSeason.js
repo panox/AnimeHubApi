@@ -48,7 +48,6 @@ client.post('auth/access_token', data, function(err, res, body) {
         comments: []
       });
     }
+  console.log("done");
   });
 });
-
-console.log("done");
