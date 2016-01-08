@@ -7,7 +7,11 @@ var config = require('../config/config');
 mongoose.connect(config.database);
 
 // Clear All Anime
-Anime.find().remove();
+Anime.find().exec(function(err, animes){
+  animes.forEach( function (anime) {
+    anime.remove();
+  });
+});
 
 //data to get token
 var data = {
