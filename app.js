@@ -58,8 +58,8 @@ app.use("/api", routes);
 var CronJob = require('cron').CronJob;
 new CronJob('* * * * * *', function() {
   console.log('You will see this message every second');
-}, null, true, 'America/Los_Angeles');
+}, null, true, 'Europe/London');
 
 // Port
 app.listen(process.env.PORT || 3000 );
-console.log('listening to 3000')
+console.log('listening to 3000');
