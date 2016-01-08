@@ -5,6 +5,8 @@ var Anime   = require('../models/anime');
 var config = require('../config/config');
 mongoose.connect(config.database);
 
-Anime.create({"_id": "20", title: "test", comments: []});
+Anime.find().exec(function(err, animes){
+  console.log(animes);
+});
 
 console.log("done");
