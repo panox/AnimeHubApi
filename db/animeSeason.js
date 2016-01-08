@@ -1,7 +1,7 @@
 var request = require('request-json');
 var mongoose = require("mongoose");
 var Anime   = require('../models/anime');
-var Token = require('./tokenData');
+var Token = require('./aniToken');
 
 // Database
 var config = require('../config/config');
