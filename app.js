@@ -58,7 +58,7 @@ app.use("/api", routes);
 var Token = require('./db/aniToken');
 var Rating = require('./db/updateRating');
 var CronJob = require('cron').CronJob;
-new CronJob('*/10 * * * * *', function() {
+new CronJob('00 30 23 * * 1', function() {
   Token.getAniToken(Rating.updateRating);
 }, null, true, 'Europe/London');
 
