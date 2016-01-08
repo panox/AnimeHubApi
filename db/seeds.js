@@ -6,7 +6,9 @@ var config = require('../config/config');
 mongoose.connect(config.database);
 
 Anime.find().exec(function(err, animes){
-  animes.remove();
+  animes.forEach( function (anime) {
+    anime.remove();
+  });
   console.log(animes);
 });
 
