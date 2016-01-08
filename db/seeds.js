@@ -5,11 +5,6 @@ var Anime   = require('../models/anime');
 var config = require('../config/config');
 mongoose.connect(config.database);
 
-Anime.find().exec(function(err, animes){
-  animes.forEach( function (anime) {
-    anime.remove();
-  });
-  console.log(animes);
-});
+Anime.create({"_id": "20", title: "test", comments: []});
 
 console.log("done");
