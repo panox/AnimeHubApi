@@ -1,11 +1,6 @@
 var request = require('request-json');
-var mongoose = require("mongoose");
 var Anime   = require('../models/anime');
 var Token = require('./aniToken');
-
-// Database
-var config = require('../config/config');
-mongoose.connect(config.database);
 
 var Rating = {
   updateRating: function (sendClientToken, client) {
