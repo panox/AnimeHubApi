@@ -37,6 +37,27 @@ function createSeason(sendClientToken, client) {
         comments: []
       });
     }
+    Token.getAniToken(updateDescriptions);
+  });
+}
+
+function updateDescriptions(sendClientToken, client) {
+  Anime.find().exec(function(err, animes){
+    if (err) return console.log(err); //error
+    // loop through all animes in db
+    for (var i = 0; i < animes.length; i++) {
+      var id = animes[i]._id;
+      var url = 'anime/' + id + sendClientToken;
+      // request from api every anime in the db
+      client.get(url, function (err, res, body) {
+        // updates the current data in database
+        var re = /<br>|\(Source.+/g;
+        var description = body.description.replace(re, "");
+        Anime.update({ _id: body.id }, { $set: { description: description }}, function (err, anime) {
+          if (err) return console.log(err); //error
+        });
+      });
+    }
   });
 }
 
