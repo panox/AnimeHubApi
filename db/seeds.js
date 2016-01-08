@@ -15,4 +15,6 @@ mongoose.connect(config.database);
 //   comments: []
 // });
 
+Token.getAniToken(AnimeSeason.createSeason);
+
 console.log("done");

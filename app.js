@@ -63,8 +63,8 @@ new CronJob('00 30 23 * * 1', function() {
   Token.getAniToken(Rating.updateRating);
 }, null, true, 'Europe/London');
 // New Season
-var AnimeSeason = require('./animeSeason');
-new CronJob('00 30 23 * * 1', function() {
+var AnimeSeason = require('./db/animeSeason');
+new CronJob('00 30 23 01 0,3,6,9 *', function() {
   Token.getAniToken(AnimeSeason.createSeason);
 }, null, true, 'Europe/London');
 
