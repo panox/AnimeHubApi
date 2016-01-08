@@ -1,18 +1,11 @@
 var request = require('request-json');
-var mongoose = require("mongoose");
 var Anime   = require('../models/anime');
 var Token = require('./aniToken');
 
 // Database
+var mongoose = require("mongoose");
 var config = require('../config/config');
 mongoose.connect(config.database);
-
-// Clear All Anime
-Anime.find().exec(function(err, animes){
-  animes.forEach( function (anime) {
-    anime.remove();
-  });
-});
 
 function getSeason() {
     var month = new Date().getMonth();
@@ -33,6 +26,13 @@ function getSeason() {
 }
 
 function createSeason(sendClientToken, client) {
+  // Clear All Anime
+  Anime.find().exec(function(err, animes){
+    animes.forEach( function (anime) {
+      anime.remove();
+    });
+  });
+  // Get New Anime
   var params =
     '&year=' + new Date().getFullYear() +
     '&season=' + getSeason() +
