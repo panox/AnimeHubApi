@@ -1,6 +1,7 @@
 var request = require('request-json');
 var mongoose = require("mongoose");
 var Anime   = require('../models/anime');
+var Token = require('./tokenData');
 
 // Database
 var config = require('../config/config');
@@ -13,16 +14,10 @@ Anime.find().exec(function(err, animes){
   });
 });
 
-//data to get token
-var data = {
-  grant_type    : "client_credentials",
-  client_id     :  process.env.ClientID,
-  client_secret :  process.env.ClientSecret,
-};
 // client url
 var client = request.createClient('https://anilist.co/api/');
 //post to get token back
-client.post('auth/access_token', data, function(err, res, body) {
+client.post('auth/access_token', Token.data, function(err, res, body) {
   if (err) return console.log(err); //error
 
   var clientToken = body.access_token;
