@@ -40,7 +40,7 @@ function createSeason(sendClientToken, client) {
   });
 }
 
-function getAniToken() {
+function getAniToken(callback) {
   // client url
   var client = request.createClient('https://anilist.co/api/');
   //post to get token back
@@ -50,10 +50,10 @@ function getAniToken() {
     var clientToken = body.access_token;
     var sendClientToken = '?access_token=' + clientToken;
 
-    createSeason(sendClientToken, client);
+    callback(sendClientToken, client);
 
     console.log("Process Complete");
   });
 }
 
-getAniToken();
+getAniToken(createSeason);
