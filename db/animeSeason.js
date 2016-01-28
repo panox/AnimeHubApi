@@ -58,7 +58,7 @@ var AnimeSeason = {
     client.get(getUrl, function(err, res, body) {
       if (err) return console.log(err); //error
       // loop request for every anime from browse response
-      for (var i = 0; i < body.length - 3; i++) {
+      for (var i = 0; i < body.length -4; i++) {
         Anime.create({
           _id: body[i].id,
           picture: body[i].image_url_lge,
