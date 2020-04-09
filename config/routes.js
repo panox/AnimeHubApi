@@ -1,13 +1,10 @@
-var express  = require('express');
-var router   = express.Router();
-var passport = require("passport");
+const express  = require('express');
+const router   = express.Router();
 
-var usersController = require('../controllers/usersController');
-var animesController = require('../controllers/animesController');
-var commentsController = require('../controllers/commentsController');
-var authenticationsController = require('../controllers/authenticationsController');
-
-var upload = require(__dirname +"/upload.js")
+const usersController = require('../controllers/usersController');
+const animesController = require('../controllers/animesController');
+const commentsController = require('../controllers/commentsController');
+const authenticationsController = require('../controllers/authenticationsController');
 
 //Login System
 router.post('/signup', authenticationsController.signup);
@@ -30,7 +27,7 @@ router.route('/animes')
   .get(animesController.animesIndex);
 
 router.route('/anime/:id')
-  .get(animesController.animeShow)
+  .get(animesController.animeShow);
 
 //Comments
 router.route('/anime/:id/comments')
@@ -40,4 +37,4 @@ router.route('/comment/:id')
   .put(commentsController.commentUpdate)
   .delete(commentsController.commentDelete);
 
-module.exports = router
+module.exports = router;
