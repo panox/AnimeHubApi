@@ -60,7 +60,6 @@ let AnimeSeason = {
       for (var i = 0; i < body.length -4; i++) {
         Anime.create({
           _id: body[i].id,
-          picture: body[i].image_url_lge,
           title: body[i].title_romaji,
           rating: body[i].popularity,
           episodes: body[i].total_episodes,
