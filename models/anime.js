@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var AnimeSchema = new mongoose.Schema({
+const AnimeSchema = new mongoose.Schema({
   _id: String,
   picture: String,
   title: String,

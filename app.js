@@ -1,21 +1,21 @@
-var express        = require('express');
-var cors           = require('cors');
-var morgan         = require('morgan');
-var bodyParser     = require('body-parser');
-var mongoose       = require('mongoose');
-var passport       = require('passport');
-var cookieParser   = require("cookie-parser");
-var methodOverride = require("method-override");
-var jwt            = require('jsonwebtoken');
-var expressJWT     = require('express-jwt');
-var app            = express();
+const express        = require('express');
+const cors           = require('cors');
+const morgan         = require('morgan');
+const bodyParser     = require('body-parser');
+const mongoose       = require('mongoose');
+const passport       = require('passport');
+const cookieParser   = require("cookie-parser");
+const methodOverride = require("method-override");
+const jwt            = require('jsonwebtoken');
+const expressJWT     = require('express-jwt');
+const app            = express();
 
-var secret = process.env.ANIME_SECRET;
+const secret = process.env.ANIME_SECRET;
 
 if(!secret) throw new Error('No secret in zshrc file');
 
 // Database
-var config = require('./config/config');
+const config = require('./config/config');
 mongoose.connect(config.database);
 
 // Require passport
@@ -51,19 +51,19 @@ app.use('/api', expressJWT({ secret: secret })
 
 
 // Routes
-var routes = require('./config/routes');
+let routes = require('./config/routes');
 app.use("/api", routes);
 
 // Cron
-var Token = require('./db/aniToken');
+let Token = require('./db/aniToken');
 // Update Ratings
-var Rating = require('./db/updateRating');
-var CronJob = require('cron').CronJob;
+let Rating = require('./db/updateRating');
+let CronJob = require('cron').CronJob;
 new CronJob('00 30 23 * * 1', function() {
   Token.getAniToken(Rating.updateRating);
 }, null, true, 'Europe/London');
 // New Season
-var AnimeSeason = require('./db/animeSeason');
+let AnimeSeason = require('./db/animeSeason');
 new CronJob('00 30 23 01 0,3,6,9 *', function() {
   Token.getAniToken(AnimeSeason.createSeason);
 }, null, true, 'Europe/London');

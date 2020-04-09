@@ -1,6 +1,6 @@
-var Anime   = require('../models/anime');
-var Comment   = require('../models/comment');
-var User   = require('../models/user');
+const Anime   = require('../models/anime');
+const Comment   = require('../models/comment');
+const User   = require('../models/user');
 
 //get all the animes
 function animesIndex(req, res) {

@@ -1,11 +1,11 @@
-var Comment   = require('../models/comment');
-var Anime   = require('../models/anime');
+const Comment   = require('../models/comment');
+const Anime   = require('../models/anime');
 
 //create comments
 function commentsCreate(req, res){
   Anime.findById(req.params.id, function(err, anime) {
 
-    var comment = new Comment({
+    let comment = new Comment({
       title: req.body.title,
       content: req.body.content,
       user: req.body.user,
@@ -64,4 +64,4 @@ module.exports = {
   commentsCreate: commentsCreate,
   commentUpdate: commentUpdate,
   commentDelete: commentDelete
-}
+};

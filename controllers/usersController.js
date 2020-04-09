@@ -1,5 +1,5 @@
-var User   = require('../models/user');
-var stripe = require('stripe')(process.env.StripeTestSecretKey);
+const User   = require('../models/user');
+const stripe = require('stripe')(process.env.StripeTestSecretKey);
 
 //get all the users
 function usersIndex(req, res) {
@@ -48,8 +48,8 @@ function userDelete(req, res){
 
 //user payment
 function userPay(req, res){
-  var stripeToken = req.body.stripeToken;
-  var charge = stripe.charges.create({
+  let stripeToken = req.body.stripeToken;
+  let charge = stripe.charges.create({
     amount: req.body.amount*100, // amount in cents, again
     currency: "gbp",
     source: stripeToken,
@@ -72,4 +72,4 @@ module.exports = {
   userUpdate: userUpdate,
   userDelete: userDelete,
   userPay: userPay
-}
+};

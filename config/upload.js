@@ -1,8 +1,8 @@
-var multer = require('multer');
-var s3 = require('multer-s3');
+const multer = require('multer');
+const s3 = require('multer-s3');
 
 
-var upload = multer({
+const upload = multer({
   storage: s3({
     dirname: 'homes/photos',
     bucket: process.env.AWS_ANIMEHUB_BUCKET,
@@ -15,4 +15,4 @@ var upload = multer({
   })
 });
 
-module.exports = upload
+module.exports = upload;

@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var CommentSchema = new mongoose.Schema({
+const CommentSchema = new mongoose.Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
   score: String,
