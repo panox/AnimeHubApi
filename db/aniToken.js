@@ -1,6 +1,6 @@
-var request = require('request-json');
+const request = require('request-json');
 
-var Token = {
+let Token = {
   data: {
     grant_type    : "client_credentials",
     client_id     :  process.env.ClientID,
@@ -8,13 +8,13 @@ var Token = {
   },
   getAniToken: function (callback) {
     // client url
-    var client = request.createClient('https://anilist.co/api/');
+    let client = request.createClient('https://anilist.co/api/');
     //post to get token back
     client.post('auth/access_token', Token.data, function(err, res, body) {
       if (err) return console.log(err); //error
 
-      var clientToken = body.access_token;
-      var sendClientToken = '?access_token=' + clientToken;
+      let clientToken = body.access_token;
+      let sendClientToken = '?access_token=' + clientToken;
 
       callback(sendClientToken, client);
 

@@ -6,7 +6,6 @@ const mongoose       = require('mongoose');
 const passport       = require('passport');
 const cookieParser   = require("cookie-parser");
 const methodOverride = require("method-override");
-const jwt            = require('jsonwebtoken');
 const expressJWT     = require('express-jwt');
 const app            = express();
 

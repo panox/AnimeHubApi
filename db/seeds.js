@@ -1,7 +1,6 @@
-var mongoose = require("mongoose");
-var Anime   = require('../models/anime');
-var Token = require('./aniToken');
-var AnimeSeason = require('./animeSeason');
+const mongoose = require("mongoose");
+const Token = require('./aniToken');
+const AnimeSeason = require('./animeSeason');
 
 // Database
 var config = require('../config/config');

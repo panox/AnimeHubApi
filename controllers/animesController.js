@@ -1,5 +1,4 @@
 const Anime   = require('../models/anime');
-const Comment   = require('../models/comment');
 const User   = require('../models/user');
 
 //get all the animes

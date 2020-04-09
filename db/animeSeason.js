@@ -1,14 +1,13 @@
-var request = require('request-json');
-var Anime   = require('../models/anime');
-var Token = require('./aniToken');
+const Anime   = require('../models/anime');
+const Token = require('./aniToken');
 
-var AnimeSeason = {
+let AnimeSeason = {
   season: function getSeason() {
-      var month = new Date().getMonth();
-      var winter = '0,1,2';
-      var spring = '3,4,5,';
-      var summer = '6,7,8,';
-      var fall = '9,10,11,';
+      let month = new Date().getMonth();
+      let winter = '0,1,2';
+      let spring = '3,4,5,';
+      let summer = '6,7,8,';
+      let fall = '9,10,11,';
       if (winter.indexOf(month) != -1) {
           season = 'winter';
       } else if (spring.indexOf(month) != -1) {
@@ -25,13 +24,13 @@ var AnimeSeason = {
       if (err) return console.log(err); //error
       // loop through all animes in db
       for (var i = 0; i < animes.length; i++) {
-        var id = animes[i]._id;
-        var url = 'anime/' + id + sendClientToken;
+        let id = animes[i]._id;
+        let url = 'anime/' + id + sendClientToken;
         // request from api every anime in the db
         client.get(url, function (err, res, body) {
           // updates the current data in database
-          var re = /<br>|\(Source.+/g;
-          var description = body.description.replace(re, "");
+          let re = /<br>|\(Source.+/g;
+          let description = body.description.replace(re, "");
           Anime.update({ _id: body.id }, { $set: { description: description }}, function (err, anime) {
             if (err) return console.log(err); //error
           });
@@ -47,13 +46,13 @@ var AnimeSeason = {
       });
     });
     // Get New Anime
-    var params =
+    let params =
       '&year=' + new Date().getFullYear() +
       '&season=' + AnimeSeason.season +
       '&type=TV' +
       '&sort=popularity-desc';
 
-    var getUrl = 'browse/anime' + sendClientToken + params;
+    let getUrl = 'browse/anime' + sendClientToken + params;
     //get all anime with url params
     client.get(getUrl, function(err, res, body) {
       if (err) return console.log(err); //error
